@@ -1,0 +1,32 @@
+using System.Drawing;
+using System.Drawing.Imaging;
+
+class DrawingExample
+{
+    public void ImageManipulation()
+    {
+        // 加载图像
+        Image originalImage = Image.FromFile("path_to_your_image.jpg");
+        // 创建新的位图对象
+        Bitmap bitmap = new Bitmap(originalImage);
+
+        // 简单的图像处理，如灰度化
+        for (int x = 0; x < bitmap.Width; x++)
+        {
+            for (int y = 0; y < bitmap.Height; y++)
+            {
+                Color originalColor = bitmap.GetPixel(x, y);
+                int grayScale = (int)((originalColor.R * 0.3) + (originalColor.G * 0.59) + (originalColor.B * 0.11));
+                Color newColor = Color.FromArgb(grayScale, grayScale, grayScale);
+                bitmap.SetPixel(x, y, newColor);
+            }
+        }
+
+        // 保存处理后的图像
+        bitmap.Save("processed_image.jpg", ImageFormat.Jpeg);
+
+        // 释放资源
+        originalImage.Dispose();
+        bitmap.Dispose();
+    }
+}

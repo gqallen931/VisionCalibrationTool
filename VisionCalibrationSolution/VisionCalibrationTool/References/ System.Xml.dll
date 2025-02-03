@@ -1,0 +1,22 @@
+using System.Xml;
+
+class XmlExample
+{
+    public void CreateAndSaveXml()
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+        XmlElement root = xmlDoc.DocumentElement;
+        xmlDoc.InsertBefore(xmlDeclaration, root);
+
+        XmlElement dataElement = xmlDoc.CreateElement("Data");
+        xmlDoc.AppendChild(dataElement);
+
+        XmlElement itemElement = xmlDoc.CreateElement("Item");
+        itemElement.SetAttribute("Name", "Example");
+        dataElement.AppendChild(itemElement);
+
+        // 保存 XML 文件
+        xmlDoc.Save("example.xml");
+    }
+}

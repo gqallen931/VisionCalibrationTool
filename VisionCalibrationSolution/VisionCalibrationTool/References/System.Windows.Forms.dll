@@ -1,0 +1,23 @@
+using System;
+using System.Windows.Forms;
+
+class WindowsFormsExample
+{
+    public static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        Form mainForm = new Form();
+        mainForm.Text = "Simple Windows Forms App";
+
+        Button button = new Button();
+        button.Text = "Click Me";
+        button.Location = new Point(50, 50);
+        button.Click += (sender, e) => MessageBox.Show("Button Clicked!");
+
+        mainForm.Controls.Add(button);
+
+        Application.Run(mainForm);
+    }
+}

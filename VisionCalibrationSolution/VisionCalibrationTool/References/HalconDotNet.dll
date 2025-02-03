@@ -1,0 +1,25 @@
+using HalconDotNet;
+
+class HalconExample
+{
+    public void HalconImageProcessing()
+    {
+        // 创建 Halcon 图像对象
+        HImage image = new HImage();
+        // 读取图像
+        image.ReadImage("path_to_your_image.jpg");
+
+        // 进行简单的图像处理，如高斯滤波
+        HImage filteredImage = new HImage();
+        image.GaussFilter(filteredImage, 5);
+
+        // 显示图像（这里只是示例，实际可能需要结合 UI 显示）
+        HTuple windowHandle;
+        HOperatorSet.OpenWindow(0, 0, 512, 512, 0, "visible", "", out windowHandle);
+        HOperatorSet.DispObj(filteredImage, windowHandle);
+
+        // 释放资源
+        image.Dispose();
+        filteredImage.Dispose();
+    }
+}

@@ -1,0 +1,33 @@
+using System;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+class ChartExample
+{
+    public static void Main()
+    {
+        Application.EnableVisualStyles();
+        Application.SetCompatibleTextRenderingDefault(false);
+
+        Form form = new Form();
+        form.Text = "Chart Example";
+
+        Chart chart = new Chart();
+        chart.Dock = DockStyle.Fill;
+
+        ChartArea chartArea = new ChartArea();
+        chart.ChartAreas.Add(chartArea);
+
+        Series series = new Series();
+        series.ChartType = SeriesChartType.Line;
+        series.Points.AddXY(1, 10);
+        series.Points.AddXY(2, 20);
+        series.Points.AddXY(3, 30);
+
+        chart.Series.Add(series);
+
+        form.Controls.Add(chart);
+
+        Application.Run(form);
+    }
+}
